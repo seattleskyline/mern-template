@@ -1,0 +1,5 @@
+node_modules
+bundle/bundle.js
+public/app/app_bundle.js
+.env
+.DS_Store
