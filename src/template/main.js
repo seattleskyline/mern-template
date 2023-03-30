@@ -1,3 +1,5 @@
+const {metadata} = require ('./metadata.js');
+
 const React = require( 'react');
 const ReactDOMServer = require( 'react-dom/server');
 const {Helmet} = require( 'react-helmet');
@@ -7,13 +9,13 @@ const App = require('../router/router.js').default;
 module.exports = function(app){
 
   app.get('*', (req, res)=>{
-    
     const helmet = Helmet.renderStatic();
     
     const content = ReactDOMServer.renderToString(
       <StaticRouter location={req.url}>
         <App/>
       </StaticRouter>
+      
     );
 
     const html = `<html lang='en-US'>
@@ -22,14 +24,14 @@ module.exports = function(app){
       ${helmet.title.toString()}
       
       <meta content="width=device-width, initial-scale=1" name="viewport" />
-      <meta name="author" content="Alex Bruner"/>
-      <meta name="publisher" content="Alex Bruner"/>
-      <meta name="keywords" content="software, engineer, developer, marketing, portfolio, alex bruner, websites"/>
+      <meta name="author" content="${metadata.author}"/>
+      <meta name="publisher" content="${metadata.publisher}"/>
+      <meta name="keywords" content="${metadata.keywords}"/>
 
-      <meta property="og:url" content="https://www.alex-bruner.com"/>
-      <meta property="og:title" content="Alex Bruner | Software Engineer" />
-      <meta property="og:locale" content="en_US" />
-      <meta property="og:description" content="Software engineer with experience in taking projects from an idea to a launched and grown application and growing existing products through a data-driven approach." />
+      <meta property="og:url" content="${metadata.og_url}"/>
+      <meta property="og:title" content="${metadata.og_title}" />
+      <meta property="og:locale" content="${metadata.og_locale}" />
+      <meta property="og:description" content="${metadata.og_description}" />
       <meta property="og:site_name" content="Alex Bruner" />
       <meta property="og:image" content="/ab.png" />
 
@@ -43,10 +45,6 @@ module.exports = function(app){
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
       <link rel="stylesheet" href="/css/main.css"/>
-      <script>
-        console.log("I built this site from scratch.  It is a poly-isomorphic React Application built with webpack.")
-        console.log("-Alex Bruner")
-      </script>
     </head>
     <body>
       ${process.env.NODE_ENV === 'production' ? tagManager.body : ''}

@@ -1,6 +1,6 @@
 const path =require('path');
 module.exports = {
-  target: "node",
+  target: "web",
   entry: "./src/index.js",
   output: {
     filename: 'app_bundle.js',

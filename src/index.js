@@ -10,4 +10,4 @@ createRoot(domNode).render(
   <BrowserRouter>
     <App />
   </BrowserRouter>
-);
+)

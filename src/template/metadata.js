@@ -1,5 +1,5 @@
 export const metadata={
-  title: "My Siwwy Wittle App",
+  title: "My Silly Wittle App",
   author: "Me",
   publisher: "Sean-The-Iceman-Publishing Co.",
   keywords: "pickle, robot, captain, squid, surfer, muffin, platypus, tinder",
